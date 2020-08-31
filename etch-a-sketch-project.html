@@ -17,15 +17,31 @@ for (i=0;i<16*16;i++){
  //tempDiv.style.display='none'
   mainDiv.appendChild(tempDiv)
  } 
-
+ //test propagation
+/*  mainDiv.addEventListener("click", (e)=> {
+let span=document.createElement('span')
+span.textContent="Je suis une span";
+mainDiv.appendChild(span);
+ })
+  */
+let gridNode=mainDiv.querySelectorAll('div');
 mainDiv.addEventListener("mouseover", (e)=> {  
- let gridNode=mainDiv.querySelectorAll('div');
   gridNode.forEach( div => {
     if (e.target===div) div.style.backgroundColor='red';
   }) 
 })
  
 document.body.appendChild(mainDiv)
+let newbutton=document.createElement('button')
+newbutton.textContent="reset"
+document.body.insertBefore(newbutton, mainDiv);
+
+newbutton.addEventListener('click', (e)=>{
+gridNode.forEach(div => 
+div.style.backgroundColor="white");
+
+})
+
 
 
 
