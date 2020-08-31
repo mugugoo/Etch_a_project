@@ -1,0 +1,45 @@
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="grid-test.css">
+</head>
+<body> 
+   <script>
+
+let mainDiv =document.createElement('div');
+mainDiv.classList.add('grid')
+mainDiv.textContent="";
+
+for (i=0;i<16*16;i++){
+ let tempDiv=document.createElement('div')
+ tempDiv.textContent=i;
+ //tempDiv.style.display='none'
+  mainDiv.appendChild(tempDiv)
+ } 
+
+mainDiv.addEventListener("mouseover", (e)=> {  
+ let gridNode=mainDiv.querySelectorAll('div');
+  gridNode.forEach( div => {
+    if (e.target===div) div.style.backgroundColor='red';
+  }) 
+})
+ 
+document.body.appendChild(mainDiv)
+
+
+
+
+/* 
+
+    let stylet =document.createElement('style');
+    stylet.textContent= ".mumu  { \n display: grid; \nbackground-color: red;}";
+    document.head.appendChild(stylet)
+    document.body.classList.add('mumu')
+    stylet.insertRule('mumu {font-color: blue;}',0)
+  let grille =document.createElement('div')
+  grille.classList.add('.playing="background-color="blue"""')
+    console.log("Hello, World!") */
+  </script>
+</body>
+</html>
