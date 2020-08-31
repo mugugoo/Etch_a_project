@@ -27,7 +27,7 @@ mainDiv.appendChild(span);
 let gridNode=mainDiv.querySelectorAll('div');
 mainDiv.addEventListener("mouseover", (e)=> {  
   gridNode.forEach( div => {
-    if (e.target===div) div.style.backgroundColor='red';
+    if (e.target===div) div.classList.add('bk-gd-red');
   }) 
 })
  
@@ -37,8 +37,8 @@ newbutton.textContent="reset"
 document.body.insertBefore(newbutton, mainDiv);
 
 newbutton.addEventListener('click', (e)=>{
-gridNode.forEach(div => 
-div.style.backgroundColor="white");
+ gridNode.forEach(div => 
+ div.classList.remove('bk-gd-red'));
 
 })
 
