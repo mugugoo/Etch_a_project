@@ -2,66 +2,68 @@
 <head>
   <title>Page Title</title>
   <meta charset="UTF-8"/>
-  <link rel="stylesheet" href="grid-test.css">
 </head>
 <body> 
+  <style>
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(16,1fr);
+    margin: 0 10% 
+
+}
+.bk-gd-red {
+    background-color:red;
+}
+  </style>
    <script>
+//creating the div grid:
 let mainDiv =document.createElement('div');
 mainDiv.classList.add('grid')
-mainDiv.setAttribute('id','main-div')
 mainDiv.textContent="";
 
 for (i=0;i<16*16;i++){
  let tempDiv=document.createElement('div')
  tempDiv.textContent=i;
- //tempDiv.style.display='none'
   mainDiv.appendChild(tempDiv)
  } 
- //test propagation
-/*  mainDiv.addEventListener("click", (e)=> {
-let span=document.createElement('span')
-span.textContent="Je suis une span";
-mainDiv.appendChild(span);
- })
-  */
-function mumu(e){
-  let gridNode=document.getElementById('main-div').querySelectorAll('div');
-  gridNode.forEach( div => {
-      if (e.target===div) div.classList.add('bk-gd-red');
-  })
-}
 
-  mainDiv.addEventListener("mouseover",  mumu);
 
-/*  let gridNode=mainDiv.querySelectorAll('div');
+//working on the mouseover event to change background color
+let gridNode=mainDiv.querySelectorAll('div');
 mainDiv.addEventListener("mouseover",  ()=> {
   gridNode.forEach( div => {
     if (event.target===div) div.classList.add('bk-gd-red');
   }) 
 }) 
- */
+ 
 
-//mainDiv.removeEventListener('click', dada());
+//working on the button and its click event
 document.body.appendChild(mainDiv)
 let newbutton=document.createElement('button')
 newbutton.textContent="reset"
 document.body.insertBefore(newbutton, mainDiv);
-let gridNode=document.getElementById('main-div').querySelectorAll('div');
 
 newbutton.addEventListener('click', (e)=>{
  gridNode.forEach(div => 
   div.classList.remove('bk-gd-red'));
-
  let newRows=prompt('How many square per side?')
  mainDiv.style.gridTemplateColumns= `repeat( ${newRows},1fr)`
- mainDiv.removeEventListener('mouseover', mumu)
- mainDiv.addEventListener('mouseleave', (e)=> {
-   mainDiv.addEventListener('mouseover', mumu)
- })
+
+
+
+
 })
+/*
+function mumu(Node, e){
+    Node.forEach( div=> {
+      if (div===e.target) console.log('haha')
+          })
+  
+  }
 
-
-
+  let gridNode=mainDiv.querySelectorAll('div');
+  mainDiv.addEventListener("mouseover",  mumu(gridNode) , true);
+*/
 
 
 /* 
