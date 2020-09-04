@@ -1,9 +1,9 @@
 .grid {
+    background-color: lightpink;
     display: grid;
     grid-template-columns: repeat(16,1fr);
-    margin: 0 10% 
-
-}
-.bk-gd-red {
-    background-color:red;
+    margin: 0 15% ;
+    padding: 3%;
+    border:3px solid grey;
+    border-radius: 5%/15%
 }

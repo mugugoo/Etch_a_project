@@ -10,10 +10,10 @@ let mainDiv =document.createElement('div');
 mainDiv.classList.add('grid')
 mainDiv.setAttribute('id','main-div')
 mainDiv.textContent="";
-
 for (i=0;i<16*16;i++){
  let tempDiv=document.createElement('div')
- tempDiv.textContent=i;
+ tempDiv.textContent="*";
+
  //tempDiv.style.display='none'
   mainDiv.appendChild(tempDiv)
  } 
@@ -24,24 +24,10 @@ span.textContent="Je suis une span";
 mainDiv.appendChild(span);
  })
   */
-function mumu(e){
-  let gridNode=document.getElementById('main-div').querySelectorAll('div');
-  gridNode.forEach( div => {
-      if (e.target===div) div.classList.add('bk-gd-red');
-  })
-}
 
-  mainDiv.addEventListener("mouseover",  mumu);
 
-/*  let gridNode=mainDiv.querySelectorAll('div');
-mainDiv.addEventListener("mouseover",  ()=> {
-  gridNode.forEach( div => {
-    if (event.target===div) div.classList.add('bk-gd-red');
-  }) 
-}) 
- */
 
-//mainDiv.removeEventListener('click', dada());
+mainDiv.addEventListener("mouseover",  mumu);
 document.body.appendChild(mainDiv)
 let newbutton=document.createElement('button')
 newbutton.textContent="reset"
@@ -50,18 +36,49 @@ let gridNode=document.getElementById('main-div').querySelectorAll('div');
 
 newbutton.addEventListener('click', (e)=>{
  gridNode.forEach(div => 
-  div.classList.remove('bk-gd-red'));
+  div.style.backgroundColor="")
 
  let newRows=prompt('How many square per side?')
  mainDiv.style.gridTemplateColumns= `repeat( ${newRows},1fr)`
+ mainDiv.setAttribute('data-black', null)
  mainDiv.removeEventListener('mouseover', mumu)
  mainDiv.addEventListener('mouseleave', (e)=> {
    mainDiv.addEventListener('mouseover', mumu)
  })
 })
 
+//using properties is annoying. Perhaps try to imbricate a function into another, so that the variable get deleted ?
+function mumu(e){
+  let color=Math.random()*255;
+  let sat=Math.random()*100;
+  let black =this.getAttribute('data-black');
+  let divNode=this.querySelectorAll('div');
+  divNode.forEach( div => {
+      if (e.target===div) {
+       // console.log(div.style.backgroundColor==="")
+        if (div.style.backgroundColor==="") {
+          setDataBlack(this)
+         setBackGroundColor(div,color,sat, black);
+        }
+        else  return;
+      }
+  })
+}
 
+function setDataBlack(elem) {
+let black=elem.getAttribute("data-black");
+if (black===null || black==="null") {
+    return elem.setAttribute('data-black',100);
+  }
+else if (black<=0) return elem;
+else {
+   return  elem.setAttribute('data-black', elem.getAttribute('data-black')-10)
+  }
+}
 
+function setBackGroundColor(elem,color="Math.random()*255", sat='Math.random()*50',black='100') {
+elem.style.backgroundColor= `hsl(${color}, ${sat}%,${black}%)`
+}
 
 
 /* 
